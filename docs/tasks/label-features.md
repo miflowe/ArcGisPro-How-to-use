@@ -1,3 +1,3 @@
-# The Project backstage
+# Label features
 
 *Stub page — not yet written.*

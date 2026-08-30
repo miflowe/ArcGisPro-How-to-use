@@ -1,3 +1,3 @@
-# Anatomy of the interface
+# Add data to a map
 
 *Stub page — not yet written.*

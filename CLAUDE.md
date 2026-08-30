@@ -1,7 +1,7 @@
 # CLAUDE.md — Project brief
 
-This repo builds a documentation site that teaches ArcGIS Pro, organized to mirror the
-software's own interface, plus a second half covering wildfire simulation workflows.
+This repo builds a documentation site that teaches ArcGIS Pro, organized around **what the
+reader is trying to do**, plus a second half covering wildfire simulation workflows.
 
 Audience: researchers and students who have ArcGIS Pro open on a second monitor and want
 to know what a button does and when to use it. Assume GIS-curious, not GIS-expert.
@@ -10,8 +10,9 @@ to know what a button does and when to use it. Assume GIS-curious, not GIS-exper
 
 ## 1. Non-negotiables
 
-**Version pin: ArcGIS Pro 3.7.** Every page assumes 3.7 (released May 2026). If a feature
-arrived in a specific release, say so inline. The homepage states the pinned version.
+**Version pin: ArcGIS Pro 3.7.1.** Every page assumes 3.7.1 — the build the repo owner runs
+and checks button names against. (The 3.7 line released May 2026.) If a feature arrived in a
+specific release, say so inline. The homepage states the pinned version.
 
 **Never copy Esri's documentation text.** Esri docs are copyrighted. Write original
 explanations in your own words. Link out with `[Esri reference →](url)` for detail. If you
@@ -22,50 +23,60 @@ the link carry the rest.
 `<!-- LINK NEEDED: <tool name> -->` and add it to `CONTENT_STATUS.md`. A wrong link is
 worse than a missing one.
 
-**Never invent UI details.** If you are unsure whether a button exists on a tab in 3.7, or
-which group it sits in, mark it `<!-- VERIFY: ... -->` rather than guessing. The value of
-this site is accuracy; a confidently wrong button name destroys trust in the whole page.
+**Never invent UI details.** If you are unsure whether a button exists in 3.7.1, what it is
+called, or where it sits, mark it `<!-- VERIFY: ... -->` rather than guessing, and log it in
+`CONTENT_STATUS.md`. The value of this site is accuracy; a confidently wrong button name
+destroys trust in the whole page. Assistant knowledge of 3.7.1 specifically is thin — this
+mechanism is load-bearing, not a formality.
 
 ---
 
-## 2. The UI model this site is built on
+## 2. Structure: tasks, not tabs
 
-ArcGIS Pro's interface has four layers. Getting these right is the point of the site —
-Esri's own docs blur them and that is the confusion we exist to fix.
+The site is organized by task. One page per thing you want to accomplish, and the page ends
+when the task is done.
 
-1. **The backstage** — clicking *Project* leaves the ribbon and opens a full-screen view:
-   New, Open, Save, Save As, Portals, Licensing, Options, Package Manager, Add-In Manager.
-   It is not a ribbon tab. It gets its own top-level nav section.
+This was a deliberate change away from a page-per-ribbon-tab structure. The reason matters,
+because it will be tempting to drift back:
 
-2. **Core ribbon tabs** — Map, Insert, Analysis, View, Edit, Imagery, Share, Help. Present
-   whenever a map view is active. (Map is replaced by Layout when a layout view is active.)
+- A tab page has no natural end. There is always another button, so the page grows until it
+  is unreadable.
+- Its page count is set by Esri's ribbon rather than by what a reader needs.
+- The reader's question is "how do I label my features", not "what is on the Labeling tab".
 
-3. **Contextual tabs** — appear only when something is selected. `Feature Layer` is a *tab
-   set* containing the sub-tabs Appearance, Labeling, and Data. Labeling and Data are NOT
-   siblings of Map or Insert. Same pattern for Raster Layer, Table, and Layout. Every
-   contextual page must open with a **When it appears** line.
+**Do not add a page per ribbon tab, pane, or contextual tab.** The "which tab is this on?"
+need is served by one page — `getting-started/where-things-live.md` — which is a lookup
+table, not an essay.
 
-4. **Panes and views** — Contents, Catalog, Geoprocessing, Symbology, History, Modify
-   Features. Note the Catalog *pane* and Catalog *view* are different things and the page
-   for Catalog must explain the difference explicitly.
+Two exceptions, both kept because you use them constantly rather than because they are UI
+surfaces: `panes/contents.md` and `panes/catalog.md`. The Catalog page must explain that the
+Catalog *pane* and Catalog *view* are different things.
+
+Where UI vocabulary is still needed on a task page, name the tab and group only so the
+reader can find the button — "**Map** tab → **Add Data**" — then move on.
 
 ---
 
-## 3. Page template
+## 3. Page template and length
 
-Every ribbon/contextual/pane page follows `docs/_template.md`. Do not improvise structure.
+Every task page follows `docs/_template.md`.
 
-Coverage rule, two tiers:
+**Concision is a hard requirement, not a preference.** Target one screen of reading plus the
+steps. If a page is getting long, it is probably two tasks — split it.
 
-- **Tier 1 — prose.** Per ribbon group, pick the 2–5 tools a wildfire researcher will
-  actually touch. Each gets a short subsection: what it does, and a **Use this when** line
-  giving a concrete situation. This is where the site earns its keep.
-- **Tier 2 — table.** Every *remaining* button in that group gets a row in the group's
-  reference table: `| Button | What it does | Esri |`. One line each, no more. This is how
-  we achieve complete coverage without writing 600 essays.
+There is no coverage quota. An earlier version of this brief required every button to appear
+in a reference table; that rule is gone, because it forced pages to document things like
+"Save Project — saves the project" and buried the useful content.
 
-Together, tiers 1 and 2 must account for every button in the group. If a group is small
-(≤3 buttons), skip the table and give everything prose.
+Write only what a reader cannot guess:
+
+- **Use this when** — the concrete situation that brings someone to the page.
+- **Steps** — the path that works. Not every alternative Esri offers.
+- **Gotchas** — what silently loses work or gives wrong results. Usually the most valuable
+  thing on the page.
+
+Omit any button whose name explains it. Omit steps the reader would take unprompted. If a
+section has nothing real in it, delete the section rather than padding it.
 
 ---
 
@@ -73,15 +84,27 @@ Together, tiers 1 and 2 must account for every button in the group. If a group i
 
 Path convention: `docs/assets/images/<section>/<page>-<thing>.png`
 
-- Full ribbon strip: `docs/assets/images/ribbon/map-ribbon.png`
-- A single group: `docs/assets/images/ribbon/map-navigate-group.png`
+- Task page: `docs/assets/images/tasks/add-data-browse-dialog.png`
 - Pane: `docs/assets/images/panes/contents-pane.png`
 
-The repo owner takes the screenshots. **Write the image markdown anyway**, with the correct
-path and real alt text, followed by `<!-- SCREENSHOT NEEDED -->`, and log it in
-`CONTENT_STATUS.md`. Never generate or fabricate an image.
+The repo owner takes the screenshots. Never generate or fabricate an image.
 
-Every page needs at minimum a full-ribbon-strip image at the top.
+**Write the image markdown anyway, inside the comment:**
+
+```markdown
+<!-- SCREENSHOT NEEDED: docs/assets/images/tasks/add-data-browse-dialog.png
+     Delete these two comment lines once the file exists, to publish the image.
+![The Add Data browse dialog](../assets/images/tasks/add-data-browse-dialog.png)
+-->
+```
+
+This is deliberate. `mkdocs build --strict` fails on a link to a missing image, so markdown
+written *outside* a comment turns CI red on every page that is waiting on a screenshot.
+Inside the comment the path and alt text are recorded and greppable, and the build stays
+green. Log each one in `CONTENT_STATUS.md`.
+
+Use screenshots where they save the reader a hunt — a dialog, a specific button. A page does
+not need one to be publishable.
 
 ---
 
@@ -94,7 +117,7 @@ Every page needs at minimum a full-ribbon-strip image at the top.
   - `!!! tip` — a genuine shortcut or time-saver
   - `!!! warning` — something that loses work or silently gives wrong results
   - `!!! note "Wildfire"` — how this tool connects to fire modeling
-- No emoji. No horizontal rules mid-page.
+- No emoji. No horizontal rules mid-page — headings give enough separation.
 - Bold sparingly; it stops working if every third phrase is bold.
 
 ---
@@ -164,16 +187,20 @@ Settings → Pages, set Source to **GitHub Actions**.
 
 ## 9. Order of work
 
-Do not attempt the whole site in one pass. Suggested sequence:
+Do not attempt the whole site in one pass. **One page per commit**, commit message
+`docs: add <page name>`. Update `CONTENT_STATUS.md` after each page.
 
-1. Scaffold: `mkdocs.yml`, homepage, template, empty stub pages for every nav entry so the
-   site builds and navigates from day one.
-2. `Getting Started` and the `Project` backstage page.
-3. Panes: Contents, Catalog. (Readers need these before any ribbon tab makes sense.)
-4. Core ribbon tabs, in this order: Map, View, Insert, Analysis, Edit, Imagery, Share, Help.
-5. Contextual tabs: Feature Layer set, then Raster Layer, Table, Layout.
-6. Data source pages.
-7. Wildfire workflows last — they cross-link into everything above.
+The repo owner checks button names against the running software, so pages land one at a time
+and get reviewed before the next one starts. Do not batch pages.
 
-**One page per commit.** Commit message format: `docs: add <page name>`. After each page,
-update `CONTENT_STATUS.md`.
+Suggested sequence:
+
+1. ~~Scaffold~~ — done. Every nav entry has a stub and `mkdocs build --strict` passes.
+2. `tasks/add-data.md` — first real task page, and the one that sets the tone for length.
+3. The rest of `What You Can Do`, in nav order.
+4. `panes/contents.md`, then `panes/catalog.md`.
+5. `getting-started/where-things-live.md` — write this once the task pages have shown which
+   tab locations actually get referenced.
+6. The rest of `Getting Started`.
+7. Data source pages.
+8. Wildfire workflows last — they cross-link into everything above.

@@ -1,3 +1,3 @@
-# Edit tab
+# Symbolize a layer
 
 *Stub page — not yet written.*

@@ -1,3 +1,3 @@
-# Feature Layer — Data
+# Where things live
 
 *Stub page — not yet written.*

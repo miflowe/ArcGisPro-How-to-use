@@ -3,25 +3,54 @@
 Update this after every page. Status values: `empty` · `stub` · `drafted` · `needs screenshots` · `done`
 
 > **Note on `--strict`:** the deploy workflow builds with `--strict`, which fails if a nav
-> entry has no file. Create stub files for every nav entry in step 1 before the first push,
-> or temporarily drop `--strict` from `.github/workflows/deploy.yml`.
+> entry has no file, or if a page links to a missing file or image. Every nav entry currently
+> has a stub and the build passes.
+
+> **Screenshot convention:** image markdown is written *inside* the
+> `<!-- SCREENSHOT NEEDED: ... -->` comment. Delete the two comment lines once the file
+> exists and the image publishes. This keeps CI green without weakening validation, and
+> without fabricating placeholder images. See `CLAUDE.md` §4.
 
 > **`exclude_docs`:** `docs/_template.md` is excluded from the build in `mkdocs.yml`. Its
-> example links (`path.md`, `analysis.md`, `url`) are placeholders that can never resolve, so
-> including it in the build fails `--strict`. It stays in `docs/` as authoring reference.
+> example links are placeholders that can never resolve, which would fail `--strict`. It
+> stays in `docs/` as authoring reference.
 
 ## Setup
 
 | Item | Status |
 |---|---|
-| `mkdocs.yml` | done |
-| `CLAUDE.md` | done |
-| `docs/_template.md` | done |
+| `mkdocs.yml` | done — nav restructured to tasks |
+| `CLAUDE.md` | done — §1, §2, §3, §4, §9 rewritten for task structure |
+| `docs/_template.md` | done — task page template |
 | `.github/workflows/deploy.yml` | done |
-| `docs/index.md` (homepage) | drafted — states the 3.7 version pin |
+| `requirements.txt` | done — toolchain pinned |
+| `docs/index.md` (homepage) | drafted |
 | `.gitignore` | done |
-| Pages source set to GitHub Actions in repo settings | **manual — repo owner** |
-| Stub files for every nav entry | done — 52 files, `mkdocs build --strict` passes |
+| Pages source set to GitHub Actions in repo settings | done — repo owner |
+| First deploy verified live | done |
+
+## What You Can Do
+
+The core of the site. One page per task; the page ends when the task is done.
+
+| Page | Status | Screenshots needed |
+|---|---|---|
+| Overview (`tasks/index.md`) | stub | |
+| Add data to a map | stub | |
+| Symbolize a layer | stub | |
+| Label features | stub | |
+| Work with attribute tables | stub | |
+| Edit features | stub | |
+| Run an analysis tool | stub | |
+| Make a printable map | stub | |
+| Share your work | stub | |
+
+## Panes
+
+| Page | Status | Screenshots needed |
+|---|---|---|
+| Contents pane | stub | |
+| Catalog pane and Catalog view | stub | |
 
 ## Getting Started
 
@@ -30,36 +59,8 @@ Update this after every page. Status values: `empty` · `stub` · `drafted` · `
 | Overview | stub | |
 | Installing and licensing | stub | |
 | Projects, maps and layers | stub | |
-| Anatomy of the interface | stub | |
+| Where things live | stub | |
 | Your first project | stub | |
-
-## Interface — backstage, ribbon, contextual, panes
-
-| Page | Status | Screenshots needed |
-|---|---|---|
-| Project backstage | stub | |
-| Ribbon overview | stub | |
-| Map | stub | |
-| Insert | stub | |
-| Analysis | stub | |
-| View | stub | |
-| Edit | stub | |
-| Imagery | stub | |
-| Share | stub | |
-| Help | stub | |
-| Contextual overview | stub | |
-| Feature Layer — Appearance | stub | |
-| Feature Layer — Labeling | stub | |
-| Feature Layer — Data | stub | |
-| Raster Layer | stub | |
-| Table | stub | |
-| Layout | stub | |
-| Panes overview | stub | |
-| Contents pane | stub | |
-| Catalog pane and view | stub | |
-| Geoprocessing pane | stub | |
-| Symbology pane | stub | |
-| History pane | stub | |
 
 ## Wildfire
 
@@ -120,6 +121,37 @@ Add every `<!-- LINK NEEDED -->` here.
 
 ---
 
+## Unverified UI details
+
+Every `<!-- VERIFY: ... -->` marker. Claims needing a check against ArcGIS Pro 3.7.1 before
+the page can move to `done`.
+
+| Page | What needs checking | Confirmed |
+|---|---|---|
+| Home | Is the version number shown on the Info page? | no |
+
+---
+
+## Salvage
+
+`notes/salvage-project-backstage.md` is the drafted Project backstage page from the previous
+tab-based structure, kept out of `docs/` so it does not build. Its useful content should be
+folded into task pages rather than restored as its own page:
+
+- The **default geodatabase** gotcha — a new project silently creates a home folder, a file
+  geodatabase and a toolbox, and every tool writes to that geodatabase by default. Belongs in
+  `getting-started/core-concepts.md` or `tasks/run-a-tool.md`.
+- **Save Project As does not copy the data**, only the `.aprx`. Belongs in
+  `tasks/share-your-work.md`. Still unverified.
+- **Licensing is where you confirm Spatial Analyst is enabled**, and a missing extension
+  looks identical to a missing tool. Belongs in `getting-started/install-and-license.md`.
+- **Package Manager requires cloning the default Python environment before installing.**
+  Belongs in `tasks/run-a-tool.md` if scripting gets covered. Still unverified.
+
+Delete this section once the content has landed.
+
+---
+
 ## Open questions for the repo owner
 
 - Which simulator will the research actually use? This decides which export workflow gets
@@ -128,3 +160,5 @@ Add every `<!-- LINK NEEDED -->` here.
 - ~~Is there a licensed Spatial Analyst extension available?~~ **Answered 2026-08-30: yes.**
   Terrain and fuel workflows can use Spatial Analyst tools directly. Pages should still name
   the extension requirement, since a reader may not have it.
+- Does the `Reference` section (shortcuts, glossary, troubleshooting) still earn its place,
+  or should it go the way of the tab pages? Not urgent — it is last in the work order.
