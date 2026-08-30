@@ -149,9 +149,13 @@ Canada weather, provincial open data portals (Ontario GeoHub for local work).
 ## 8. Build
 
 ```bash
-pip install mkdocs-material
+pip install -r requirements.txt
 mkdocs serve      # local preview at localhost:8000
+mkdocs build --strict   # what CI runs; must pass before pushing
 ```
+
+Versions are pinned in `requirements.txt` because MkDocs 2.0 is a breaking rewrite with no
+migration path. Do not install `mkdocs-material` unpinned.
 
 Deployment is automatic via `.github/workflows/deploy.yml` on push to `main`. In repo
 Settings → Pages, set Source to **GitHub Actions**.

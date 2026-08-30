@@ -1,0 +1,12 @@
+# Documentation toolchain. Pinned deliberately — do not loosen without running
+# `mkdocs build --strict` locally first.
+#
+# MkDocs 2.0 is a backward-incompatible rewrite: the plugin system is removed,
+# theme overrides are rewritten, and there is no migration path. An unpinned
+# `pip install mkdocs-material` will eventually pull it in and break this site
+# on a push that changed nothing but a page.
+#
+# These are the versions the site is verified against.
+mkdocs==1.6.1
+mkdocs-material==9.7.7
+pymdown-extensions==11.0.2
