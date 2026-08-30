@@ -125,5 +125,6 @@ Add every `<!-- LINK NEEDED -->` here.
 - Which simulator will the research actually use? This decides which export workflow gets
   the most detail.
 - Study area — a specific region, or general-purpose examples?
-- Is there a licensed Spatial Analyst extension available? Several terrain workflows depend
-  on it and the pages should say so up front if not.
+- ~~Is there a licensed Spatial Analyst extension available?~~ **Answered 2026-08-30: yes.**
+  Terrain and fuel workflows can use Spatial Analyst tools directly. Pages should still name
+  the extension requirement, since a reader may not have it.
