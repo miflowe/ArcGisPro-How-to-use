@@ -1,0 +1,129 @@
+site_name: ArcGIS Pro — How to Use
+site_description: A tab-by-tab guide to ArcGIS Pro 3.7, with wildfire simulation workflows
+site_url: https://miflowe.github.io/ArcGisPro-How-to-use/
+repo_url: https://github.com/miflowe/ArcGisPro-How-to-use
+repo_name: miflowe/ArcGisPro-How-to-use
+edit_uri: edit/main/docs/
+
+theme:
+  name: material
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.top
+    - navigation.instant
+    - navigation.tracking
+    - navigation.indexes
+    - toc.follow
+    - search.suggest
+    - search.highlight
+    - content.tabs.link
+    - content.code.copy
+    - content.action.edit
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: teal
+      accent: deep orange
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: teal
+      accent: deep orange
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+
+markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.keys          # renders ++ctrl+s++ as key caps
+  - attr_list
+  - md_in_html
+  - tables
+  - footnotes
+  - toc:
+      permalink: true
+
+plugins:
+  - search
+
+# The page template is authoring guidance, not a page. Its example links are placeholders
+# ('path.md', 'url') that will never resolve, so --strict fails if it is part of the build.
+exclude_docs: |
+  _template.md
+
+nav:
+  - Home: index.md
+
+  - Getting Started:
+      - getting-started/index.md
+      - Installing and licensing: getting-started/install-and-license.md
+      - Projects, maps and layers: getting-started/core-concepts.md
+      - Anatomy of the interface: getting-started/interface-anatomy.md
+      - Your first project: getting-started/first-project.md
+
+  - Interface:
+      - The Project backstage: interface/project-backstage.md
+      - Ribbon tabs:
+          - interface/ribbon/index.md
+          - Map: interface/ribbon/map.md
+          - Insert: interface/ribbon/insert.md
+          - Analysis: interface/ribbon/analysis.md
+          - View: interface/ribbon/view.md
+          - Edit: interface/ribbon/edit.md
+          - Imagery: interface/ribbon/imagery.md
+          - Share: interface/ribbon/share.md
+          - Help: interface/ribbon/help.md
+      - Contextual tabs:
+          - interface/contextual/index.md
+          - Feature Layer — Appearance: interface/contextual/feature-layer-appearance.md
+          - Feature Layer — Labeling: interface/contextual/feature-layer-labeling.md
+          - Feature Layer — Data: interface/contextual/feature-layer-data.md
+          - Raster Layer: interface/contextual/raster-layer.md
+          - Table: interface/contextual/table.md
+          - Layout: interface/contextual/layout.md
+      - Panes and views:
+          - interface/panes/index.md
+          - Contents pane: interface/panes/contents.md
+          - Catalog pane and Catalog view: interface/panes/catalog.md
+          - Geoprocessing pane: interface/panes/geoprocessing.md
+          - Symbology pane: interface/panes/symbology.md
+          - History pane: interface/panes/history.md
+
+  - Wildfire:
+      - wildfire/index.md
+      - Concepts:
+          - How fire spread models work: wildfire/concepts/how-models-work.md
+          - Fuel models — US vs Canada: wildfire/concepts/fuel-models.md
+          - Terrain inputs: wildfire/concepts/terrain.md
+          - Weather inputs: wildfire/concepts/weather.md
+      - Workflows:
+          - Preparing a study area: wildfire/workflows/study-area.md
+          - Building a terrain stack from a DEM: wildfire/workflows/terrain-stack.md
+          - Preparing fuel layers: wildfire/workflows/fuel-layers.md
+          - Exporting to a simulator: wildfire/workflows/export-to-simulator.md
+          - Bringing results back into ArcGIS Pro: wildfire/workflows/import-results.md
+          - Mapping burn severity: wildfire/workflows/burn-severity.md
+      - Simulators:
+          - Overview and how to choose: wildfire/simulators/index.md
+          - FARSITE and FlamMap (US): wildfire/simulators/farsite-flammap.md
+          - Prometheus and BurnP3 (Canada): wildfire/simulators/prometheus-burnp3.md
+
+  - Data Sources:
+      - data-sources/index.md
+      - United States: data-sources/united-states.md
+      - Canada: data-sources/canada.md
+      - Ontario and local: data-sources/ontario.md
+      - Basemaps and imagery: data-sources/basemaps.md
+      - Evaluating a dataset: data-sources/evaluating-data.md
+
+  - Reference:
+      - Keyboard shortcuts: reference/shortcuts.md
+      - Glossary: reference/glossary.md
+      - Troubleshooting: reference/troubleshooting.md
