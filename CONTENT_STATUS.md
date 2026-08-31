@@ -19,48 +19,15 @@ Update this after every page. Status values: `empty` · `stub` · `drafted` · `
 
 | Item | Status |
 |---|---|
-| `mkdocs.yml` | done — nav restructured to tasks |
-| `CLAUDE.md` | done — §1, §2, §3, §4, §9 rewritten for task structure |
-| `docs/_template.md` | done — task page template |
+| `mkdocs.yml` | done — nav is Home + Wildfire + Data Sources |
+| `CLAUDE.md` | done — rewritten for wildfire-only scope |
+| `docs/_template.md` | done — workflow page template |
 | `.github/workflows/deploy.yml` | done |
 | `requirements.txt` | done — toolchain pinned |
 | `docs/index.md` (homepage) | drafted |
 | `.gitignore` | done |
 | Pages source set to GitHub Actions in repo settings | done — repo owner |
 | First deploy verified live | done |
-
-## What You Can Do
-
-The core of the site. One page per task; the page ends when the task is done.
-
-| Page | Status | Screenshots needed |
-|---|---|---|
-| Overview (`tasks/index.md`) | stub | |
-| Add data to a map | stub | |
-| Symbolize a layer | stub | |
-| Label features | stub | |
-| Work with attribute tables | stub | |
-| Edit features | stub | |
-| Run an analysis tool | stub | |
-| Make a printable map | stub | |
-| Share your work | stub | |
-
-## Panes
-
-| Page | Status | Screenshots needed |
-|---|---|---|
-| Contents pane | stub | |
-| Catalog pane and Catalog view | stub | |
-
-## Getting Started
-
-| Page | Status | Screenshots needed |
-|---|---|---|
-| Overview | stub | |
-| Installing and licensing | stub | |
-| Projects, maps and layers | stub | |
-| Where things live | stub | |
-| Your first project | stub | |
 
 ## Wildfire
 
@@ -92,14 +59,6 @@ The core of the site. One page per task; the page ends when the task is done.
 | Basemaps and imagery | stub |
 | Evaluating a dataset | stub |
 
-## Reference
-
-| Page | Status |
-|---|---|
-| Keyboard shortcuts | stub |
-| Glossary | stub |
-| Troubleshooting | stub |
-
 ---
 
 ## Outstanding screenshots
@@ -128,27 +87,37 @@ the page can move to `done`.
 
 | Page | What needs checking | Confirmed |
 |---|---|---|
-| Home | Is the version number shown on the Info page? | no |
 
 ---
 
 ## Salvage
 
-`notes/salvage-project-backstage.md` is the drafted Project backstage page from the previous
-tab-based structure, kept out of `docs/` so it does not build. Its useful content should be
-folded into task pages rather than restored as its own page:
+`notes/` holds drafted pages from the two previous structures. They are outside `docs/` so
+they do not build. Fold the useful content into workflow pages; do not restore the pages.
 
-- The **default geodatabase** gotcha — a new project silently creates a home folder, a file
-  geodatabase and a toolbox, and every tool writes to that geodatabase by default. Belongs in
-  `getting-started/core-concepts.md` or `tasks/run-a-tool.md`.
-- **Save Project As does not copy the data**, only the `.aprx`. Belongs in
-  `tasks/share-your-work.md`. Still unverified.
-- **Licensing is where you confirm Spatial Analyst is enabled**, and a missing extension
-  looks identical to a missing tool. Belongs in `getting-started/install-and-license.md`.
+**`notes/salvage-add-data.md`** — drafted "Add data to a map" page:
+
+- **The first layer sets the map's coordinate system**, and everything added afterwards is
+  reprojected on the fly *for display only*. Layers look aligned while sitting in different
+  systems underneath, which is how raster maths silently produces wrong output. This is the
+  most important gotcha we have written so far — it belongs in
+  `wildfire/workflows/terrain-stack.md`.
+- **A layer points at the file, it does not copy it.** Moving the source breaks the layer.
+- **A CSV or Excel table has no geometry** until you run XY Table To Point. Relevant wherever
+  weather station data gets loaded — `wildfire/concepts/weather.md`.
+
+**`notes/salvage-project-backstage.md`** — drafted Project backstage page:
+
+- **The default geodatabase** — a new project silently creates a home folder, geodatabase and
+  toolbox, and every tool writes there by default. Belongs in
+  `wildfire/workflows/study-area.md`.
+- **Licensing is where you confirm Spatial Analyst is enabled**, and a missing extension looks
+  identical to a missing tool. Belongs in the "You will need" line of the first workflow page
+  that requires it.
 - **Package Manager requires cloning the default Python environment before installing.**
-  Belongs in `tasks/run-a-tool.md` if scripting gets covered. Still unverified.
+  Belongs wherever Python scripting lands. Still unverified.
 
-Delete this section once the content has landed.
+Delete each bullet once the content has landed.
 
 ---
 
@@ -160,5 +129,3 @@ Delete this section once the content has landed.
 - ~~Is there a licensed Spatial Analyst extension available?~~ **Answered 2026-08-30: yes.**
   Terrain and fuel workflows can use Spatial Analyst tools directly. Pages should still name
   the extension requirement, since a reader may not have it.
-- Does the `Reference` section (shortcuts, glossary, troubleshooting) still earn its place,
-  or should it go the way of the tab pages? Not urgent — it is last in the work order.

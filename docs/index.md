@@ -1,42 +1,20 @@
-# ArcGIS Pro — How to Use
+# ArcGIS Pro for wildfire simulation
 
-A guide organized around what you want to do, not around where Esri put the buttons. Each
-page covers one task, start to finish. The second half covers wildfire simulation workflows
-for both the United States and Canada.
+How to use ArcGIS Pro to prepare inputs for wildfire spread models, run them, and map the
+results — for both the United States and Canada.
+
+The ArcGIS Pro instructions live inside the workflows rather than in a separate manual. You
+learn to add data, clip rasters, and script with Python while doing the thing you actually
+came here to do.
 
 !!! note "Version"
-    Every page assumes **ArcGIS Pro 3.7.1**. If your ribbon looks different, check your
-    version — *Project → Info*.
-    <!-- VERIFY: is the version number shown on the Info page? -->
+    Every page assumes **ArcGIS Pro 3.7.1**.
 
-## New here?
+## Start here
 
-- [Getting started](getting-started/index.md) — install, licence, and the three ideas the
-  rest of the site assumes.
-- [Where things live](getting-started/where-things-live.md) — which ribbon tab holds what.
-  One page, so you can stop hunting.
-
-## What you can do
-
-The core of the site. Pick the thing you are trying to do.
-
-- [Add data to a map](tasks/add-data.md)
-- [Symbolize a layer](tasks/symbolize.md)
-- [Label features](tasks/label-features.md)
-- [Work with attribute tables](tasks/attribute-tables.md)
-- [Edit features](tasks/edit-features.md)
-- [Run an analysis tool](tasks/run-a-tool.md)
-- [Make a printable map](tasks/printable-map.md)
-- [Share your work](tasks/share-your-work.md)
-
-The two panes you will live in are [Contents](panes/contents.md) and
-[Catalog](panes/catalog.md).
-
-## Wildfire simulation
-
-- [Wildfire overview](wildfire/index.md)
-- [Fuel models — US vs Canada](wildfire/concepts/fuel-models.md) — read before choosing an
-  ecosystem to work in.
+- [Wildfire overview](wildfire/index.md) — what this covers and what it does not.
+- [Fuel models — US vs Canada](wildfire/concepts/fuel-models.md) — read before you choose an
+  ecosystem to work in. It decides everything downstream.
 - [Simulators — how to choose](wildfire/simulators/index.md)
 
 !!! warning "US and Canadian fire models are not interchangeable"
@@ -44,9 +22,16 @@ The two panes you will live in are [Contents](panes/contents.md) and
     different classifications feeding different equations. Mixing them produces output that
     looks plausible and is wrong. Every workflow page here separates the two.
 
-## Data and reference
+## The workflow, start to finish
 
-- [Data sources](data-sources/index.md) — what each dataset contains and how to load it.
-- [Keyboard shortcuts](reference/shortcuts.md) ·
-  [Glossary](reference/glossary.md) ·
-  [Troubleshooting](reference/troubleshooting.md)
+1. [Preparing a study area](wildfire/workflows/study-area.md)
+2. [Building a terrain stack from a DEM](wildfire/workflows/terrain-stack.md)
+3. [Preparing fuel layers](wildfire/workflows/fuel-layers.md)
+4. [Exporting to a simulator](wildfire/workflows/export-to-simulator.md)
+5. [Bringing results back into ArcGIS Pro](wildfire/workflows/import-results.md)
+6. [Mapping burn severity](wildfire/workflows/burn-severity.md)
+
+## Where the data comes from
+
+- [Data sources](data-sources/index.md) — what each dataset contains, its resolution, and how
+  to load it.

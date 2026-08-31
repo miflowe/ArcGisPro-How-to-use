@@ -1,10 +1,14 @@
 # CLAUDE.md — Project brief
 
-This repo builds a documentation site that teaches ArcGIS Pro, organized around **what the
-reader is trying to do**, plus a second half covering wildfire simulation workflows.
+This repo builds a documentation site about **using ArcGIS Pro for wildfire simulation**, in
+both the US and Canadian fire modelling ecosystems.
 
-Audience: researchers and students who have ArcGIS Pro open on a second monitor and want
-to know what a button does and when to use it. Assume GIS-curious, not GIS-expert.
+It is not a general ArcGIS Pro manual. ArcGIS Pro instruction is taught *inside* the
+workflows — how to add data, clip a raster, or run a Python script appears at the point in a
+fire modelling workflow where you need it, not on a separate page.
+
+Audience: researchers and students who have ArcGIS Pro open on a second monitor. Assume
+GIS-curious, not GIS-expert.
 
 ---
 
@@ -31,38 +35,35 @@ mechanism is load-bearing, not a formality.
 
 ---
 
-## 2. Structure: tasks, not tabs
+## 2. Structure
 
-The site is organized by task. One page per thing you want to accomplish, and the page ends
-when the task is done.
+Three sections only: **Wildfire**, **Data Sources**, and the homepage.
 
-This was a deliberate change away from a page-per-ribbon-tab structure. The reason matters,
-because it will be tempting to drift back:
+The site has been cut down twice, deliberately. It previously had a page per ribbon tab, then
+a set of general task pages. Both are gone. The reasons are worth keeping, because the pull
+back towards them is strong:
 
-- A tab page has no natural end. There is always another button, so the page grows until it
-  is unreadable.
-- Its page count is set by Esri's ribbon rather than by what a reader needs.
-- The reader's question is "how do I label my features", not "what is on the Labeling tab".
+- A page per ribbon tab has no natural end — there is always another button, so the page
+  grows until nobody reads it. Its page count is set by Esri's ribbon, not by reader need.
+- General task pages ("Add data to a map", "Symbolize a layer") served a hypothetical
+  audience. The real reader is here for fire modelling.
 
-**Do not add a page per ribbon tab, pane, or contextual tab.** The "which tab is this on?"
-need is served by one page — `getting-started/where-things-live.md` — which is a lookup
-table, not an essay.
+**Do not reintroduce a Getting Started section, a page per ribbon tab or pane, or standalone
+how-to pages.** If a reader needs to know how to add a DEM, that belongs in the terrain
+workflow at the step where they add the DEM.
 
-Two exceptions, both kept because you use them constantly rather than because they are UI
-surfaces: `panes/contents.md` and `panes/catalog.md`. The Catalog page must explain that the
-Catalog *pane* and Catalog *view* are different things.
-
-Where UI vocabulary is still needed on a task page, name the tab and group only so the
-reader can find the button — "**Map** tab → **Add Data**" — then move on.
+The practical consequence: workflow pages carry more ArcGIS Pro instruction than a pure
+methods write-up would. That is intended. Name the tab and group so the reader can find the
+button — "**Map** tab → **Add Data**" — then move on.
 
 ---
 
 ## 3. Page template and length
 
-Every task page follows `docs/_template.md`.
+Every workflow page follows `docs/_template.md`.
 
 **Concision is a hard requirement, not a preference.** Target one screen of reading plus the
-steps. If a page is getting long, it is probably two tasks — split it.
+steps. If a page is getting long, it is probably two workflows — split it.
 
 There is no coverage quota. An earlier version of this brief required every button to appear
 in a reference table; that rule is gone, because it forced pages to document things like
@@ -122,9 +123,9 @@ not need one to be publishable.
 
 ---
 
-## 6. Wildfire half of the site
+## 6. US and Canada
 
-The repo covers **both** the US and Canadian fire modeling ecosystems. These are genuinely
+The site covers **both** the US and Canadian fire modeling ecosystems. These are genuinely
 different systems, not dialects — different fuel classifications, different fire behavior
 equations, different data providers.
 
@@ -146,8 +147,8 @@ Where a workflow differs by country, use Material **content tabs**:
 Never silently blend the two. A reader following a US fuel model with Canadian data will
 get plausible-looking, wrong output — the most dangerous failure mode for this site.
 
-Every wildfire workflow page ends with a **Limitations** section stating what the model
-does not account for. These are research tools; the site should not read like the outputs
+Every workflow page ends with a **Limitations** section stating what the model does not
+account for. These are research tools; the site should not read like the outputs
 are ground truth.
 
 ---
@@ -187,20 +188,19 @@ Settings → Pages, set Source to **GitHub Actions**.
 
 ## 9. Order of work
 
-Do not attempt the whole site in one pass. **One page per commit**, commit message
-`docs: add <page name>`. Update `CONTENT_STATUS.md` after each page.
-
-The repo owner checks button names against the running software, so pages land one at a time
-and get reviewed before the next one starts. Do not batch pages.
+**One page per commit**, message `docs: add <page name>`. Update `CONTENT_STATUS.md` after
+each page. The repo owner checks button names against the running software, so pages land one
+at a time and get reviewed before the next starts. Do not batch pages.
 
 Suggested sequence:
 
 1. ~~Scaffold~~ — done. Every nav entry has a stub and `mkdocs build --strict` passes.
-2. `tasks/add-data.md` — first real task page, and the one that sets the tone for length.
-3. The rest of `What You Can Do`, in nav order.
-4. `panes/contents.md`, then `panes/catalog.md`.
-5. `getting-started/where-things-live.md` — write this once the task pages have shown which
-   tab locations actually get referenced.
-6. The rest of `Getting Started`.
-7. Data source pages.
-8. Wildfire workflows last — they cross-link into everything above.
+2. `wildfire/concepts/fuel-models.md` — the US/Canada split decides everything downstream, so
+   it should exist before any workflow page references it.
+3. The rest of `Concepts`.
+4. `Workflows`, in nav order. These carry the ArcGIS Pro instruction.
+5. `Simulators`.
+6. Data source pages — or earlier, since workflow pages will want to link to them.
+
+`notes/` holds drafted pages from the previous structures. They do not build. Salvageable
+content is listed in `CONTENT_STATUS.md`.

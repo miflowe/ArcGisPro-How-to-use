@@ -1,5 +1,5 @@
 site_name: ArcGIS Pro — How to Use
-site_description: A task-by-task guide to ArcGIS Pro 3.7.1, with wildfire simulation workflows
+site_description: Using ArcGIS Pro 3.7.1 for wildfire simulation, in the US and Canada
 site_url: https://miflowe.github.io/ArcGisPro-How-to-use/
 repo_url: https://github.com/miflowe/ArcGisPro-How-to-use
 repo_name: miflowe/ArcGisPro-How-to-use
@@ -61,28 +61,6 @@ exclude_docs: |
 nav:
   - Home: index.md
 
-  - Getting Started:
-      - getting-started/index.md
-      - Installing and licensing: getting-started/install-and-license.md
-      - Projects, maps and layers: getting-started/core-concepts.md
-      - Where things live: getting-started/where-things-live.md
-      - Your first project: getting-started/first-project.md
-
-  - What You Can Do:
-      - tasks/index.md
-      - Add data to a map: tasks/add-data.md
-      - Symbolize a layer: tasks/symbolize.md
-      - Label features: tasks/label-features.md
-      - Work with attribute tables: tasks/attribute-tables.md
-      - Edit features: tasks/edit-features.md
-      - Run an analysis tool: tasks/run-a-tool.md
-      - Make a printable map: tasks/printable-map.md
-      - Share your work: tasks/share-your-work.md
-
-  - Panes:
-      - Contents pane: panes/contents.md
-      - Catalog pane and Catalog view: panes/catalog.md
-
   - Wildfire:
       - wildfire/index.md
       - Concepts:
@@ -109,8 +87,3 @@ nav:
       - Ontario and local: data-sources/ontario.md
       - Basemaps and imagery: data-sources/basemaps.md
       - Evaluating a dataset: data-sources/evaluating-data.md
-
-  - Reference:
-      - Keyboard shortcuts: reference/shortcuts.md
-      - Glossary: reference/glossary.md
-      - Troubleshooting: reference/troubleshooting.md
