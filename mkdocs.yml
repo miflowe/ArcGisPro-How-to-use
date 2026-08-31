@@ -1,4 +1,4 @@
-site_name: ArcGIS Pro — How to Use
+site_name: ArcGIS Pro for wildfire simulation
 site_description: Using ArcGIS Pro 3.7.1 for wildfire simulation, in the US and Canada
 site_url: https://miflowe.github.io/ArcGisPro-How-to-use/
 repo_url: https://github.com/miflowe/ArcGisPro-How-to-use
@@ -63,22 +63,9 @@ nav:
 
   - Wildfire:
       - wildfire/index.md
-      - Concepts:
-          - How fire spread models work: wildfire/concepts/how-models-work.md
-          - Fuel models — US vs Canada: wildfire/concepts/fuel-models.md
-          - Terrain inputs: wildfire/concepts/terrain.md
-          - Weather inputs: wildfire/concepts/weather.md
-      - Workflows:
-          - Preparing a study area: wildfire/workflows/study-area.md
-          - Building a terrain stack from a DEM: wildfire/workflows/terrain-stack.md
-          - Preparing fuel layers: wildfire/workflows/fuel-layers.md
-          - Exporting to a simulator: wildfire/workflows/export-to-simulator.md
-          - Bringing results back into ArcGIS Pro: wildfire/workflows/import-results.md
-          - Mapping burn severity: wildfire/workflows/burn-severity.md
-      - Simulators:
-          - Overview and how to choose: wildfire/simulators/index.md
-          - FARSITE and FlamMap (US): wildfire/simulators/farsite-flammap.md
-          - Prometheus and BurnP3 (Canada): wildfire/simulators/prometheus-burnp3.md
+      - Maps: wildfire/maps.md
+      - Python scripts:
+          - wildfire/scripts/index.md
 
   - Data Sources:
       - data-sources/index.md

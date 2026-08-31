@@ -37,33 +37,43 @@ mechanism is load-bearing, not a formality.
 
 ## 2. Structure
 
-Three sections only: **Wildfire**, **Data Sources**, and the homepage.
+Current nav:
 
-The site has been cut down twice, deliberately. It previously had a page per ribbon tab, then
-a set of general task pages. Both are gone. The reasons are worth keeping, because the pull
-back towards them is strong:
+- **Home**
+- **Wildfire** — an overview, a `Maps` page, and a `Python scripts` section.
+- **Data Sources**
+
+The site has been cut down three times, deliberately. It previously had a page per ribbon
+tab, then general task pages, then a full set of wildfire concept/workflow/simulator pages.
+All are gone. Keep the reasons, because the pull back towards them is strong:
 
 - A page per ribbon tab has no natural end — there is always another button, so the page
-  grows until nobody reads it. Its page count is set by Esri's ribbon, not by reader need.
-- General task pages ("Add data to a map", "Symbolize a layer") served a hypothetical
-  audience. The real reader is here for fire modelling.
+  grows until nobody reads it. Its page count is set by Esri's ribbon, not reader need.
+- General task pages ("Add data to a map") served a hypothetical audience. The real reader is
+  here for fire modelling.
+- The concept/workflow tree was scaffolding for pages nobody had written yet. Structure was
+  running ahead of content.
+
+**Do not add sections speculatively.** Add a page when there is something to put in it. The
+`Python scripts` section grows one page per script as scripts get built — that is the pattern
+to follow.
 
 **Do not reintroduce a Getting Started section, a page per ribbon tab or pane, or standalone
-how-to pages.** If a reader needs to know how to add a DEM, that belongs in the terrain
-workflow at the step where they add the DEM.
+how-to pages.** ArcGIS Pro instruction goes in the page that needs it. Name the tab and group
+so the reader can find the button — "**Map** tab → **Add Data**" — then move on.
 
-The practical consequence: workflow pages carry more ArcGIS Pro instruction than a pure
-methods write-up would. That is intended. Name the tab and group so the reader can find the
-button — "**Map** tab → **Add Data**" — then move on.
+Script files live at `docs/wildfire/scripts/files/<name>.py` and are linked relatively so
+they download. See `docs/_template.md`.
 
 ---
 
 ## 3. Page template and length
 
-Every workflow page follows `docs/_template.md`.
+Every Python script page follows `docs/_template.md`. The `Maps` page and the Wildfire
+overview are one-offs and do not have a template.
 
 **Concision is a hard requirement, not a preference.** Target one screen of reading plus the
-steps. If a page is getting long, it is probably two workflows — split it.
+steps. If a page is getting long, it is probably two pages — split it.
 
 There is no coverage quota. An earlier version of this brief required every button to appear
 in a reference table; that rule is gone, because it forced pages to document things like
@@ -192,15 +202,14 @@ Settings → Pages, set Source to **GitHub Actions**.
 each page. The repo owner checks button names against the running software, so pages land one
 at a time and get reviewed before the next starts. Do not batch pages.
 
-Suggested sequence:
+Next up:
 
-1. ~~Scaffold~~ — done. Every nav entry has a stub and `mkdocs build --strict` passes.
-2. `wildfire/concepts/fuel-models.md` — the US/Canada split decides everything downstream, so
-   it should exist before any workflow page references it.
-3. The rest of `Concepts`.
-4. `Workflows`, in nav order. These carry the ArcGIS Pro instruction.
-5. `Simulators`.
-6. Data source pages — or earlier, since workflow pages will want to link to them.
+1. `wildfire/maps.md` — where to find the data, what is needed, and how to get it into ArcGIS
+   Pro. Overlaps the Data Sources section; resolve that overlap before writing both.
+2. `wildfire/index.md` — write after Maps, so the overview describes what actually exists.
+3. `wildfire/scripts/index.md` — an index of available scripts. Grows as scripts are built.
+4. Individual script pages, one per script, as the repo owner builds them.
+5. Data source pages.
 
 `notes/` holds drafted pages from the previous structures. They do not build. Salvageable
 content is listed in `CONTENT_STATUS.md`.

@@ -19,9 +19,9 @@ Update this after every page. Status values: `empty` · `stub` · `drafted` · `
 
 | Item | Status |
 |---|---|
-| `mkdocs.yml` | done — nav is Home + Wildfire + Data Sources |
+| `mkdocs.yml` | done — site renamed, nav is Home + Wildfire + Data Sources |
 | `CLAUDE.md` | done — rewritten for wildfire-only scope |
-| `docs/_template.md` | done — workflow page template |
+| `docs/_template.md` | done — Python script page template |
 | `.github/workflows/deploy.yml` | done |
 | `requirements.txt` | done — toolchain pinned |
 | `docs/index.md` (homepage) | drafted |
@@ -31,22 +31,14 @@ Update this after every page. Status values: `empty` · `stub` · `drafted` · `
 
 ## Wildfire
 
-| Page | Status | US covered | Canada covered |
-|---|---|---|---|
-| Overview | stub | no | no |
-| How fire spread models work | stub | no | no |
-| Fuel models — US vs Canada | stub | no | no |
-| Terrain inputs | stub | no | no |
-| Weather inputs | stub | no | no |
-| Preparing a study area | stub | no | no |
-| Building a terrain stack | stub | no | no |
-| Preparing fuel layers | stub | no | no |
-| Exporting to a simulator | stub | no | no |
-| Importing results | stub | no | no |
-| Mapping burn severity | stub | no | no |
-| Simulator overview | stub | no | no |
-| FARSITE and FlamMap | stub | n/a | n/a |
-| Prometheus and BurnP3 | stub | n/a | n/a |
+| Page | Status | Screenshots needed |
+|---|---|---|
+| Overview (`wildfire/index.md`) | stub | |
+| Maps | stub | |
+| Python scripts — index | stub | |
+
+One page per script, added as scripts get built. Script files go in
+`docs/wildfire/scripts/files/`.
 
 ## Data sources
 
@@ -100,22 +92,20 @@ they do not build. Fold the useful content into workflow pages; do not restore t
 - **The first layer sets the map's coordinate system**, and everything added afterwards is
   reprojected on the fly *for display only*. Layers look aligned while sitting in different
   systems underneath, which is how raster maths silently produces wrong output. This is the
-  most important gotcha we have written so far — it belongs in
-  `wildfire/workflows/terrain-stack.md`.
+  most important gotcha we have written so far — it belongs on `wildfire/maps.md`.
 - **A layer points at the file, it does not copy it.** Moving the source breaks the layer.
 - **A CSV or Excel table has no geometry** until you run XY Table To Point. Relevant wherever
-  weather station data gets loaded — `wildfire/concepts/weather.md`.
+  weather station data gets loaded.
 
 **`notes/salvage-project-backstage.md`** — drafted Project backstage page:
 
 - **The default geodatabase** — a new project silently creates a home folder, geodatabase and
-  toolbox, and every tool writes there by default. Belongs in
-  `wildfire/workflows/study-area.md`.
+  toolbox, and every tool writes there by default. Belongs on `wildfire/maps.md`.
 - **Licensing is where you confirm Spatial Analyst is enabled**, and a missing extension looks
-  identical to a missing tool. Belongs in the "You will need" line of the first workflow page
+  identical to a missing tool. Belongs in the "What you need" section of the first script page
   that requires it.
 - **Package Manager requires cloning the default Python environment before installing.**
-  Belongs wherever Python scripting lands. Still unverified.
+  Belongs on every script page needing a non-default package. Still unverified.
 
 Delete each bullet once the content has landed.
 
@@ -123,8 +113,10 @@ Delete each bullet once the content has landed.
 
 ## Open questions for the repo owner
 
-- Which simulator will the research actually use? This decides which export workflow gets
-  the most detail.
+- **Does the `Maps` page replace the `Data Sources` section?** Maps is meant to cover where to
+  find data and what is needed, which is most of what Data Sources was for. Six data source
+  stubs are still in the nav. Decide before writing either.
+- Which simulator will the research actually use? It shapes what the scripts export to.
 - Study area — a specific region, or general-purpose examples?
 - ~~Is there a licensed Spatial Analyst extension available?~~ **Answered 2026-08-30: yes.**
   Terrain and fuel workflows can use Spatial Analyst tools directly. Pages should still name

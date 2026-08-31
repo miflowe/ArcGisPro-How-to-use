@@ -1,3 +1,3 @@
-# Fuel models — US vs Canada
+# Maps
 
 *Stub page — not yet written.*
