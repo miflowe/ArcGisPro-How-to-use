@@ -40,8 +40,10 @@ mechanism is load-bearing, not a formality.
 Current nav:
 
 - **Home**
-- **Wildfire** — an overview, a `Maps` page, and a `Python scripts` section.
-- **Data Sources**
+- **Wildfire**
+    - an overview
+    - **Maps** — `Data sources`, `Working with maps`
+    - **Python scripts** — one page per script
 
 The site has been cut down three times, deliberately. It previously had a page per ribbon
 tab, then general task pages, then a full set of wildfire concept/workflow/simulator pages.
@@ -53,6 +55,8 @@ All are gone. Keep the reasons, because the pull back towards them is strong:
   here for fire modelling.
 - The concept/workflow tree was scaffolding for pages nobody had written yet. Structure was
   running ahead of content.
+- A top-level `Data Sources` section duplicated what the Maps pages needed to say anyway. It
+  is now a single page, `wildfire/maps/data-sources.md`.
 
 **Do not add sections speculatively.** Add a page when there is something to put in it. The
 `Python scripts` section grows one page per script as scripts get built — that is the pattern
@@ -163,20 +167,27 @@ are ground truth.
 
 ---
 
-## 7. Data source pages
+## 7. Data sources
 
-Each data source gets a short entry: what it contains, spatial resolution, temporal
-coverage, format, licence/cost, and how to load it into ArcGIS Pro. Verify every download
-link before publishing; mark unverified ones `<!-- LINK NEEDED -->`.
+All sources live on **one page**, `wildfire/maps/data-sources.md`, not a page each. Each
+source gets a short entry: what it contains, spatial resolution, temporal coverage, format,
+licence/cost, and how to load it into ArcGIS Pro. A table is usually the right shape.
+
+Verify every download link before publishing; mark unverified ones `<!-- LINK NEEDED -->` and
+log them in `CONTENT_STATUS.md`.
 
 Sources to cover (verify all URLs — do not assume):
 
 *US:* LANDFIRE, USGS 3DEP elevation, National Interagency Fire Center open data, MTBS burn
 severity, NASA FIRMS active fire detections, RAWS weather stations.
 
-*Canada:* Canadian Wildland Fire Information System (CWFIS), National Fire Database,
-NRCan CDEM/HRDEM elevation, Canadian forest fuel type grids, Environment and Climate Change
-Canada weather, provincial open data portals (Ontario GeoHub for local work).
+*Canada:* Canadian Wildland Fire Information System (CWFIS), National Fire Database, NRCan
+CDEM/HRDEM elevation, Canadian forest fuel type grids, Environment and Climate Change Canada
+weather, provincial open data portals (Ontario GeoHub for local work).
+
+Use content tabs to separate US and Canadian sources, per §6. If this page becomes unwieldy,
+split it by country rather than by dataset type — never let a reader browse a flat list where
+the two ecosystems are mixed.
 
 ---
 
@@ -204,12 +215,12 @@ at a time and get reviewed before the next starts. Do not batch pages.
 
 Next up:
 
-1. `wildfire/maps.md` — where to find the data, what is needed, and how to get it into ArcGIS
-   Pro. Overlaps the Data Sources section; resolve that overlap before writing both.
-2. `wildfire/index.md` — write after Maps, so the overview describes what actually exists.
-3. `wildfire/scripts/index.md` — an index of available scripts. Grows as scripts are built.
-4. Individual script pages, one per script, as the repo owner builds them.
-5. Data source pages.
+1. `wildfire/maps/data-sources.md` — write before `Working with maps`, since that page will
+   reference specific datasets.
+2. `wildfire/maps/working-with-maps.md` — how to get the data into ArcGIS Pro and what to do
+   with it. The coordinate-system gotcha in `notes/salvage-add-data.md` belongs here.
+3. `wildfire/index.md` — write last of the three, so the overview describes what exists.
+4. `wildfire/scripts/index.md`, then one page per script as they get built.
 
 `notes/` holds drafted pages from the previous structures. They do not build. Salvageable
 content is listed in `CONTENT_STATUS.md`.

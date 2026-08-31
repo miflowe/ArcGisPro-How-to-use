@@ -11,8 +11,10 @@ ArcGIS Pro instruction lives inside the pages that need it, not in a separate ma
 ## Start here
 
 - [Wildfire](wildfire/index.md) — what this covers and what it does not.
-- [Maps](wildfire/maps.md) — where to find the data, what you need, and how to get it into
-  ArcGIS Pro.
+- [Data sources](wildfire/maps/data-sources.md) — where to download the terrain, fuel and
+  weather data, and what each dataset actually contains.
+- [Working with maps](wildfire/maps/working-with-maps.md) — getting that data into ArcGIS Pro
+  and what you can do with it once it is there.
 - [Python scripts](wildfire/scripts/index.md) — download a script, see what it does and what
   it needs, and run it.
 
@@ -20,8 +22,3 @@ ArcGIS Pro instruction lives inside the pages that need it, not in a separate ma
     Scott & Burgan / Anderson fuel models and the Canadian FBP System fuel types are
     different classifications feeding different equations. Mixing them produces output that
     looks plausible and is wrong. Any page covering both separates them explicitly.
-
-## Where the data comes from
-
-- [Data sources](data-sources/index.md) — what each dataset contains, its resolution, and how
-  to load it.

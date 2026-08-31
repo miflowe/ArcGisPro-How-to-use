@@ -19,7 +19,7 @@ Update this after every page. Status values: `empty` · `stub` · `drafted` · `
 
 | Item | Status |
 |---|---|
-| `mkdocs.yml` | done — site renamed, nav is Home + Wildfire + Data Sources |
+| `mkdocs.yml` | done — site renamed, nav is Home + Wildfire |
 | `CLAUDE.md` | done — rewritten for wildfire-only scope |
 | `docs/_template.md` | done — Python script page template |
 | `.github/workflows/deploy.yml` | done |
@@ -29,27 +29,18 @@ Update this after every page. Status values: `empty` · `stub` · `drafted` · `
 | Pages source set to GitHub Actions in repo settings | done — repo owner |
 | First deploy verified live | done |
 
-## Wildfire
+## Pages
 
 | Page | Status | Screenshots needed |
 |---|---|---|
-| Overview (`wildfire/index.md`) | stub | |
-| Maps | stub | |
+| Home | drafted | |
+| Wildfire overview (`wildfire/index.md`) | stub | |
+| Maps — Data sources | stub | |
+| Maps — Working with maps | stub | |
 | Python scripts — index | stub | |
 
 One page per script, added as scripts get built. Script files go in
 `docs/wildfire/scripts/files/`.
-
-## Data sources
-
-| Page | Status |
-|---|---|
-| Overview | stub |
-| United States | stub |
-| Canada | stub |
-| Ontario and local | stub |
-| Basemaps and imagery | stub |
-| Evaluating a dataset | stub |
 
 ---
 
@@ -92,7 +83,8 @@ they do not build. Fold the useful content into workflow pages; do not restore t
 - **The first layer sets the map's coordinate system**, and everything added afterwards is
   reprojected on the fly *for display only*. Layers look aligned while sitting in different
   systems underneath, which is how raster maths silently produces wrong output. This is the
-  most important gotcha we have written so far — it belongs on `wildfire/maps.md`.
+  most important gotcha we have written so far — it belongs on
+  `wildfire/maps/working-with-maps.md`.
 - **A layer points at the file, it does not copy it.** Moving the source breaks the layer.
 - **A CSV or Excel table has no geometry** until you run XY Table To Point. Relevant wherever
   weather station data gets loaded.
@@ -100,7 +92,8 @@ they do not build. Fold the useful content into workflow pages; do not restore t
 **`notes/salvage-project-backstage.md`** — drafted Project backstage page:
 
 - **The default geodatabase** — a new project silently creates a home folder, geodatabase and
-  toolbox, and every tool writes there by default. Belongs on `wildfire/maps.md`.
+  toolbox, and every tool writes there by default. Belongs on
+  `wildfire/maps/working-with-maps.md`.
 - **Licensing is where you confirm Spatial Analyst is enabled**, and a missing extension looks
   identical to a missing tool. Belongs in the "What you need" section of the first script page
   that requires it.
@@ -113,9 +106,6 @@ Delete each bullet once the content has landed.
 
 ## Open questions for the repo owner
 
-- **Does the `Maps` page replace the `Data Sources` section?** Maps is meant to cover where to
-  find data and what is needed, which is most of what Data Sources was for. Six data source
-  stubs are still in the nav. Decide before writing either.
 - Which simulator will the research actually use? It shapes what the scripts export to.
 - Study area — a specific region, or general-purpose examples?
 - ~~Is there a licensed Spatial Analyst extension available?~~ **Answered 2026-08-30: yes.**

@@ -63,14 +63,8 @@ nav:
 
   - Wildfire:
       - wildfire/index.md
-      - Maps: wildfire/maps.md
+      - Maps:
+          - Data sources: wildfire/maps/data-sources.md
+          - Working with maps: wildfire/maps/working-with-maps.md
       - Python scripts:
           - wildfire/scripts/index.md
-
-  - Data Sources:
-      - data-sources/index.md
-      - United States: data-sources/united-states.md
-      - Canada: data-sources/canada.md
-      - Ontario and local: data-sources/ontario.md
-      - Basemaps and imagery: data-sources/basemaps.md
-      - Evaluating a dataset: data-sources/evaluating-data.md
